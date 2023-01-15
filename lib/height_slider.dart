@@ -43,6 +43,7 @@ class _HeightSlider extends State<HeightSlider> {
           ),
           SliderTheme(
             data: SliderTheme.of(context).copyWith(
+              trackShape: const RectangularSliderTrackShape(),
               thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
               overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
               thumbColor: kAccentColor,

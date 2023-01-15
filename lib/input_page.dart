@@ -1,8 +1,8 @@
 import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:bmi_calculator_flutter/height_slider.dart';
+import 'package:bmi_calculator_flutter/number_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'custom_card.dart';
 import 'gender_options.dart';
 
 const double buttonHeight = 70.0;
@@ -31,17 +31,24 @@ class _InputPageState extends State<InputPage> {
           const Expanded(
             child: GenderOptions(),
           ),
-          Expanded(
+          const Expanded(
             child: HeightSlider(),
           ),
           Expanded(
             child: Row(
-              children: [
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
                 Expanded(
-                  child: CustomCard(),
+                  child: NumberCard(
+                    label: 'weight',
+                    startingValue: 74,
+                  ),
                 ),
                 Expanded(
-                  child: CustomCard(),
+                  child: NumberCard(
+                    label: 'age',
+                    startingValue: 19,
+                  ),
                 ),
               ],
             ),
