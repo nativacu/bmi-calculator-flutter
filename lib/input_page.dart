@@ -1,8 +1,7 @@
-import 'package:bmi_calculator_flutter/gender_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'custom_card.dart';
+import 'gender_options.dart';
 
 const double buttonHeight = 70.0;
 const Color buttonColor = Color(0xFFEB1555);
@@ -28,22 +27,7 @@ class _InputPageState extends State<InputPage> {
           // Row(
           //   children: [
           Expanded(
-            child: Row(
-              children: const [
-                Expanded(
-                  child: GenderCard(
-                    iconName: FontAwesomeIcons.mars,
-                    displayText: "male",
-                  ),
-                ),
-                Expanded(
-                  child: GenderCard(
-                    iconName: FontAwesomeIcons.venus,
-                    displayText: "female",
-                  ),
-                ),
-              ],
-            ),
+            child: GenderOptions(),
           ),
           Expanded(
             child: CustomCard(),
