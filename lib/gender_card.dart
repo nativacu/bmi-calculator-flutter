@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'custom_card.dart';
 
+enum Gender { male, female }
+
 const Color activeCardColor = Color(0xFF1D1E33);
 const Color activeContentColor = Colors.white;
 const Color inactiveCardColor = Color(0xFF111328);
@@ -12,12 +14,15 @@ class GenderCard extends StatefulWidget {
   final IconData iconName;
   final String displayText;
   final bool isActive;
+  final Function onPressed;
 
-  const GenderCard(
-      {super.key,
-      required this.iconName,
-      required this.displayText,
-      required this.isActive});
+  const GenderCard({
+    super.key,
+    required this.iconName,
+    required this.displayText,
+    required this.isActive,
+    required this.onPressed,
+  });
 
   @override
   State<GenderCard> createState() => _GenderCard();
@@ -36,9 +41,15 @@ class _GenderCard extends State<GenderCard> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didUpdateWidget(covariant GenderCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
     setColors();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return CustomCard(
+      onPressed: widget.onPressed,
       color: backgroundColor,
       cardChild: Column(
         mainAxisAlignment: MainAxisAlignment.center,

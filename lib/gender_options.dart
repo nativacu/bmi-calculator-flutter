@@ -33,27 +33,19 @@ class _GenderOptions extends State<GenderOptions> {
     return Row(
       children: [
         Expanded(
-          child: GestureDetector(
-            onTap: () {
-              updateButtonStatus(Gender.male);
-            },
-            child: GenderCard(
-              iconName: FontAwesomeIcons.mars,
-              displayText: "male",
-              isActive: isMaleButtonActive,
-            ),
+          child: GenderCard(
+            iconName: FontAwesomeIcons.mars,
+            displayText: "male",
+            isActive: isMaleButtonActive,
+            onPressed: () => updateButtonStatus(Gender.male),
           ),
         ),
         Expanded(
-          child: GestureDetector(
-            onTap: () => {
-              updateButtonStatus(Gender.female),
-            },
-            child: GenderCard(
-              iconName: FontAwesomeIcons.venus,
-              displayText: "female",
-              isActive: isFemaleButtonActive,
-            ),
+          child: GenderCard(
+            iconName: FontAwesomeIcons.venus,
+            displayText: "female",
+            isActive: isFemaleButtonActive,
+            onPressed: () => updateButtonStatus(Gender.female),
           ),
         ),
       ],
