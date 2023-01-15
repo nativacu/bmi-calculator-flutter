@@ -1,9 +1,11 @@
+import 'package:bmi_calculator_flutter/gender_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'custom_card.dart';
 
 const double buttonHeight = 70.0;
 const Color buttonColor = Color(0xFFEB1555);
-const Color defaultColor = Color(0xFF1D1E33);
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -27,27 +29,33 @@ class _InputPageState extends State<InputPage> {
           //   children: [
           Expanded(
             child: Row(
-              children: [
+              children: const [
                 Expanded(
-                  child: Card(),
+                  child: GenderCard(
+                    iconName: FontAwesomeIcons.mars,
+                    displayText: "male",
+                  ),
                 ),
                 Expanded(
-                  child: Card(),
+                  child: GenderCard(
+                    iconName: FontAwesomeIcons.venus,
+                    displayText: "female",
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: Card(),
+            child: CustomCard(),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: Card(),
+                  child: CustomCard(),
                 ),
                 Expanded(
-                  child: Card(),
+                  child: CustomCard(),
                 ),
               ],
             ),
@@ -61,23 +69,6 @@ class _InputPageState extends State<InputPage> {
           //   ],
           // ),
         ],
-      ),
-    );
-  }
-}
-
-class Card extends StatelessWidget {
-  final Color color;
-
-  Card({this.color = defaultColor});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: color,
       ),
     );
   }
