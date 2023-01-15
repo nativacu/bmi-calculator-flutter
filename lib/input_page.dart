@@ -1,6 +1,7 @@
 import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:bmi_calculator_flutter/height_slider.dart';
 import 'package:bmi_calculator_flutter/number_card.dart';
+import 'package:bmi_calculator_flutter/result_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'gender_options.dart';
@@ -53,11 +54,28 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kAccentColor,
-            margin: const EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: h * 0.09,
+          GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ResultsPage(result: 19),
+                ),
+              )
+            },
+            child: Container(
+              color: kAccentColor,
+              margin: const EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: h * 0.09,
+              child: Center(
+                child: Text(
+                  'calculate bmi'.toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: kPrimaryTextStyle.copyWith(fontSize: 20),
+                ),
+              ),
+            ),
           )
           //   ],
           // ),
