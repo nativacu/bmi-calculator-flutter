@@ -12,3 +12,4 @@ const kPrimaryTextStyle = TextStyle(
 );
 
 const Color kAccentColor = Color(0xFFEB1555);
+const Color kAccentColor16 = Color(0x26EB1555);

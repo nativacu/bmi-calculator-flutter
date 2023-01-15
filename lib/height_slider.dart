@@ -13,6 +13,9 @@ class HeightSlider extends StatefulWidget {
 class _HeightSlider extends State<HeightSlider> {
   int bmiHeight = 140;
 
+  final double minSliderValue = 120.0;
+  final double maxSliderValue = 220.0;
+
   @override
   Widget build(BuildContext context) {
     return CustomCard(
@@ -38,17 +41,26 @@ class _HeightSlider extends State<HeightSlider> {
               ),
             ],
           ),
-          Slider(
-            value: bmiHeight.toDouble(),
-            min: 120,
-            max: 220,
-            activeColor: kAccentColor,
-            inactiveColor: kSecondaryContentColor,
-            onChanged: (double height) {
-              setState(() {
-                bmiHeight = height.round();
-              });
-            },
+          SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+              overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0),
+              thumbColor: kAccentColor,
+              activeTrackColor: Colors.white,
+              overlayColor: kAccentColor16,
+              trackHeight: 2.0,
+              inactiveTrackColor: kSecondaryContentColor,
+            ),
+            child: Slider(
+              value: bmiHeight.toDouble(),
+              min: minSliderValue,
+              max: maxSliderValue,
+              onChanged: (double height) {
+                setState(() {
+                  bmiHeight = height.round();
+                });
+              },
+            ),
           )
         ],
       ),
