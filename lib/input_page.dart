@@ -1,4 +1,5 @@
 import 'package:bmi_calculator_flutter/constants.dart';
+import 'package:bmi_calculator_flutter/height_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'custom_card.dart';
@@ -14,9 +15,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  //TODO extract Slider to new widget
-  int bmiHeight = 180;
-
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
@@ -34,45 +32,7 @@ class _InputPageState extends State<InputPage> {
             child: GenderOptions(),
           ),
           Expanded(
-            //TODO extract Slider to new widget
-            child: CustomCard(
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Height',
-                    style: kSecondaryTextStyle,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Text(
-                        bmiHeight.toString(),
-                        style: kPrimaryTextStyle,
-                      ),
-                      const Text(
-                        'cm',
-                        style: kSecondaryTextStyle,
-                      ),
-                    ],
-                  ),
-                  Slider(
-                    value: bmiHeight.toDouble(),
-                    min: 120,
-                    max: 220,
-                    activeColor: kAccentColor,
-                    inactiveColor: kSecondaryContentColor,
-                    onChanged: (double test) {
-                      setState(() {
-                        bmiHeight = test.round();
-                      });
-                    },
-                  )
-                ],
-              ),
-            ),
+            child: HeightSlider(),
           ),
           Expanded(
             child: Row(
