@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
 import 'custom_card.dart';
 
 enum Gender { male, female }
@@ -8,7 +9,6 @@ enum Gender { male, female }
 const Color activeCardColor = Color(0xFF1D1E33);
 const Color activeContentColor = Colors.white;
 const Color inactiveCardColor = Color(0xFF111328);
-const Color inactiveContentColor = Color(0xFF8D8E98);
 
 class GenderCard extends StatefulWidget {
   final IconData iconName;
@@ -30,13 +30,13 @@ class GenderCard extends StatefulWidget {
 
 class _GenderCard extends State<GenderCard> {
   Color backgroundColor = inactiveCardColor;
-  Color contentColor = inactiveContentColor;
+  Color contentColor = kSecondaryContentColor;
 
   setColors() {
     setState(() {
       backgroundColor = widget.isActive ? activeCardColor : inactiveCardColor;
       contentColor =
-          widget.isActive ? activeContentColor : inactiveContentColor;
+          widget.isActive ? activeContentColor : kSecondaryContentColor;
     });
   }
 
@@ -64,10 +64,7 @@ class _GenderCard extends State<GenderCard> {
           ),
           Text(
             widget.displayText.toUpperCase(),
-            style: TextStyle(
-              fontSize: 18.0,
-              color: contentColor,
-            ),
+            style: kSecondaryTextStyle.copyWith(color: contentColor),
           )
         ],
       ),
