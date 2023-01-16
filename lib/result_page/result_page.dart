@@ -22,9 +22,16 @@ const bodyTextStyle = TextStyle(
 );
 
 class ResultsPage extends StatelessWidget {
-  final double result;
+  final String result;
+  final String resultText;
+  final String resultInterpretation;
 
-  const ResultsPage({super.key, required this.result});
+  ResultsPage({
+    super.key,
+    required this.result,
+    required this.resultText,
+    required this.resultInterpretation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,50 +43,55 @@ class ResultsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI Calculator'),
+        title: const Text('BMI Calculator'),
       ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
                 style: kPrimaryTextStyle.copyWith(fontSize: 40),
               ),
             ),
-            Expanded(
-              flex: 5,
-              child: CustomCard(
-                cardChild: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Normal',
-                      style: resultTextStyle,
-                    ),
-                    Text(
-                      result.toString(),
-                      style: bmiTextStyle,
-                    ),
-                    Text(
-                      'Your BMI result is low you should eat more',
+          ),
+          Expanded(
+            flex: 5,
+            child: CustomCard(
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    resultText.toUpperCase(),
+                    style: resultTextStyle,
+                  ),
+                  Text(
+                    result,
+                    style: bmiTextStyle,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(40.0),
+                    child: Text(
+                      resultInterpretation,
                       style: bodyTextStyle,
                       textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            BottomButton(
-              h: h,
-              onTap: navigateToHome,
-              displayText: 're-calculate your bmi',
-            )
-          ],
-        ),
+          ),
+          BottomButton(
+            h: h,
+            onTap: navigateToHome,
+            displayText: 're-calculate your bmi',
+          )
+        ],
       ),
       // body: const Text('Results..'),
     );
