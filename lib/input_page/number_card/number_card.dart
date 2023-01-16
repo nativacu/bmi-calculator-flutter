@@ -10,13 +10,13 @@ enum Actions { add, remove }
 class NumberCard extends StatefulWidget {
   final String label;
   final int startingValue;
-  // final Function onChange;
+  final ValueChanged<int>? onChange;
 
   const NumberCard({
     super.key,
     required this.label,
     required this.startingValue,
-    // required this.onChange,
+    this.onChange,
   });
   @override
   State<NumberCard> createState() => _NumberCard();
@@ -35,6 +35,9 @@ class _NumberCard extends State<NumberCard> {
           selectedNumber = selectedNumber + 1;
         } else {
           selectedNumber = selectedNumber > 0 ? selectedNumber - 1 : 0;
+        }
+        if (widget.onChange != null) {
+          widget.onChange!(selectedNumber);
         }
       });
     }

@@ -1,3 +1,4 @@
+import 'package:bmi_calculator_flutter/calculator_service.dart';
 import 'package:bmi_calculator_flutter/input_page/height_slider/height_slider.dart';
 import 'package:bmi_calculator_flutter/input_page/number_card/number_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,8 @@ import '../shared/bottom_button.dart';
 import 'gender_options/gender_options.dart';
 
 const double buttonHeight = 70.0;
+const int startingWeight = 74;
+const int startingHeight = 140;
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -16,22 +19,32 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  int bmiHeight = startingHeight;
+  int bmiWeight = startingWeight;
+
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
 
     navigateToResult() {
+      CalculatorService calculatorService =
+          CalculatorService(height: bmiHeight, weight: bmiWeight);
+
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const ResultsPage(result: 19),
+          builder: (context) => ResultsPage(
+            result: calculatorService.calculateBMI(),
+            resultText: calculatorService.getResult(),
+            resultInterpretation: calculatorService.getInterpretation(),
+          ),
         ),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,20 +54,28 @@ class _InputPageState extends State<InputPage> {
           const Expanded(
             child: GenderOptions(),
           ),
-          const Expanded(
-            child: HeightSlider(),
-          ),
+          Expanded(child: HeightSlider(
+            onChange: (height) {
+              setState(() {
+                bmiHeight = height;
+              });
+            },
+          )),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Expanded(
                   child: NumberCard(
-                    label: 'weight',
-                    startingValue: 74,
-                  ),
+                      label: 'weight',
+                      startingValue: startingWeight,
+                      onChange: (int weight) {
+                        setState(() {
+                          bmiWeight = weight;
+                        });
+                      }),
                 ),
-                Expanded(
+                const Expanded(
                   child: NumberCard(
                     label: 'age',
                     startingValue: 19,

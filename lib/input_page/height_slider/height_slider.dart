@@ -4,7 +4,8 @@ import '../../shared/constants.dart';
 import '../../shared/custom_card.dart';
 
 class HeightSlider extends StatefulWidget {
-  const HeightSlider({super.key});
+  final ValueChanged<int> onChange;
+  const HeightSlider({super.key, required this.onChange});
 
   @override
   State<HeightSlider> createState() => _HeightSlider();
@@ -12,7 +13,6 @@ class HeightSlider extends StatefulWidget {
 
 class _HeightSlider extends State<HeightSlider> {
   int bmiHeight = 140;
-
   final double minSliderValue = 120.0;
   final double maxSliderValue = 220.0;
 
@@ -58,7 +58,9 @@ class _HeightSlider extends State<HeightSlider> {
               max: maxSliderValue,
               onChanged: (double height) {
                 setState(() {
-                  bmiHeight = height.round();
+                  int newHeight = height.round();
+                  bmiHeight = newHeight;
+                  widget.onChange(newHeight);
                 });
               },
             ),
