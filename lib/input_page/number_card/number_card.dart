@@ -1,9 +1,9 @@
-import 'package:bmi_calculator_flutter/custom_card.dart';
-import 'package:bmi_calculator_flutter/round_icon_button.dart';
+import 'package:bmi_calculator_flutter/shared/custom_card.dart';
+import 'package:bmi_calculator_flutter/shared/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
+import '../../shared/constants.dart';
 
 enum Actions { add, remove }
 

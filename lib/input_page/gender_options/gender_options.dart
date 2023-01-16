@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'gender_card.dart';
+import 'gender_card/gender_card.dart';
 
 enum Gender { male, female }
 

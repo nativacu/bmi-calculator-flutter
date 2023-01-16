@@ -1,10 +1,10 @@
-import 'package:bmi_calculator_flutter/constants.dart';
-import 'package:bmi_calculator_flutter/height_slider.dart';
-import 'package:bmi_calculator_flutter/number_card.dart';
-import 'package:bmi_calculator_flutter/result_page.dart';
+import 'package:bmi_calculator_flutter/input_page/height_slider/height_slider.dart';
+import 'package:bmi_calculator_flutter/input_page/number_card/number_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'gender_options.dart';
+import '../result_page/result_page.dart';
+import '../shared/bottom_button.dart';
+import 'gender_options/gender_options.dart';
 
 const double buttonHeight = 70.0;
 
@@ -19,6 +19,15 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
+
+    navigateToResult() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ResultsPage(result: 19),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -54,28 +63,10 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ResultsPage(result: 19),
-                ),
-              )
-            },
-            child: Container(
-              color: kAccentColor,
-              margin: const EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: h * 0.09,
-              child: Center(
-                child: Text(
-                  'calculate bmi'.toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: kPrimaryTextStyle.copyWith(fontSize: 20),
-                ),
-              ),
-            ),
+          BottomButton(
+            h: h,
+            onTap: navigateToResult,
+            displayText: 'calculate bmi',
           )
           //   ],
           // ),

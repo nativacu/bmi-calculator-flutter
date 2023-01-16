@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
-import 'custom_card.dart';
+import '../../../shared/constants.dart';
+import '../../../shared/custom_card.dart';
 
 enum Gender { male, female }
 
-const Color activeCardColor = Color(0xFF1D1E33);
 const Color activeContentColor = Colors.white;
 const Color inactiveCardColor = Color(0xFF111328);
 
@@ -34,7 +33,7 @@ class _GenderCard extends State<GenderCard> {
 
   setColors() {
     setState(() {
-      backgroundColor = widget.isActive ? activeCardColor : inactiveCardColor;
+      backgroundColor = widget.isActive ? kDefaultCardColor : inactiveCardColor;
       contentColor =
           widget.isActive ? activeContentColor : kSecondaryContentColor;
     });

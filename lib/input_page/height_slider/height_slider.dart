@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
-import 'custom_card.dart';
+import '../../shared/constants.dart';
+import '../../shared/custom_card.dart';
 
 class HeightSlider extends StatefulWidget {
   const HeightSlider({super.key});

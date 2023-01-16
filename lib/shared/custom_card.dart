@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-const Color defaultColor = Color(0xFF1D1E33);
+import 'constants.dart';
 
 class CustomCard extends StatelessWidget {
   final Color color;
@@ -8,7 +8,10 @@ class CustomCard extends StatelessWidget {
   Function? onPressed;
 
   CustomCard(
-      {super.key, this.color = defaultColor, this.cardChild, this.onPressed});
+      {super.key,
+      this.color = kDefaultCardColor,
+      this.cardChild,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
